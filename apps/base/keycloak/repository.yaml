@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: keycloak
+  namespace: flux-system
+spec:
+  interval: 1m #defines at which interval the Helm repository index is fetched -  a push-based fetch can be introduced using webhook receivers < pour les releases perso plutôt utilisé cette partie.
+  url: oci://registry-1.docker.io/bitnamicharts/
+  type: oci

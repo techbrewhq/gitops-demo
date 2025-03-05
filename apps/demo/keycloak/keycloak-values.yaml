@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: keycloak
+  namespace: default
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: keycloak # Name of the helm chart
+      version: "24.4.0"
+      sourceRef:
+        kind: HelmRepository # <HelmRepository|GitRepository|Bucket>
+        name: keycloak
+        namespace: keycloak
+      interval: 1m
+  values:
+    extraEnvVars:
+      - name: KC_HOSTNAME_URL
+        value: https://sso.dev.techbrewhq.com
+      - name: KC_HOSTNAME_ADMIN_URL
+        value: https://keycloak.admin.dev.techbrewhq.com
+      - name: KEYCLOAK_FRONTEND_URL
+        value: "https://keycloak.admin.dev.techbrewhq.com" # External URL with HTTPS
+      - name: PROXY_ADDRESS_FORWARDING
+        value: "true"
+      - name: KC_PROXY
+        value: "edge"
+      - name: KC_HOSTNAME_URL
+        value: "https://keycloak.admin.dev.techbrewhq.com"
+      - name: KC_HOSTNAME_STRICT
+        value: "true"
+      - name: KC_HOSTNAME_STRICT_HTTPS
+        value: "true"
+    replicaCount: 1
+    resources:
+      requests:
+        cpu: "500m" # Request 0.5 vCPU
+        memory: "1Gi" # Request 1GiB RAM
+      limits:
+        cpu: "1000m" # Limit to 1 vCPU
+        memory: "2Gi" # Limit to 2GiB RAM
