@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: istio-admin-gateway
+  namespace: istio-admin-gateway
+spec:
+  selector:
+    istio: admin-gateway # Must match the gateway pod labels
+  servers:
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "*.admin.dev.techbrewhq.com"
+      tls:
+        mode: SIMPLE
+        credentialName: gateway-tls
