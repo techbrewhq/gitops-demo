@@ -29,7 +29,7 @@ spec:
       - name: KC_HOSTNAME_URL
         value: "https://keycloak.admin.dev.techbrewhq.com"
       - name: KC_HOSTNAME_STRICT
-        value: "true"
+        value: "false"
       - name: KC_HOSTNAME_STRICT_HTTPS
         value: "true"
     replicaCount: 1
