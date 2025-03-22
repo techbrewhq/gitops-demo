@@ -13,7 +13,6 @@ data:
       "accessTokenLifespan": 300,
       "ssoSessionIdleTimeout": 1800,
       "ssoSessionMaxLifespan": 36000,
-      "defaultGroups": ["users"],
       "groups": [
         {
           "name": "grafana-admins",
