@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
+      interval: 1m
   values:
     grafana:
       enabled: true
