@@ -17,7 +17,7 @@ spec:
   values:
     extraEnvVars:
       - name: KC_HOSTNAME
-        value: "keycloak.admin.techbrewhq.com"
+        value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
         value: "edge"
       - name: KC_HOSTNAME_STRICT
