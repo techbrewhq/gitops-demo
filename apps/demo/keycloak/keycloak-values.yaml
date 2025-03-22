@@ -2,15 +2,15 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: keycloak
-  namespace: default
+  namespace: keycloak
 spec:
   interval: 1m
   chart:
     spec:
-      chart: keycloak # Name of the helm chart
+      chart: keycloak
       version: "24.4.0"
       sourceRef:
-        kind: HelmRepository # <HelmRepository|GitRepository|Bucket>
+        kind: HelmRepository
         name: keycloak
         namespace: keycloak
       interval: 1m
@@ -35,6 +35,15 @@ spec:
         value: "true"
       - name: KEYCLOAK_PRODUCTION
         value: "true"
+      - name: KEYCLOAK_IMPORT
+        value: "/opt/bitnami/keycloak/data/import/realm.json"
+    extraVolumes:
+      - name: realm-config
+        configMap:
+          name: keycloak-realm
+    extraVolumeMounts:
+      - name: realm-config
+        mountPath: /opt/bitnami/keycloak/data/import/
     replicaCount: 1
     resources:
       requests:
@@ -43,67 +52,3 @@ spec:
       limits:
         cpu: "1000m"
         memory: "2Gi"
-    extraConfigMapData:
-      realm.json: |
-        {
-          "realm": "techbrew",
-          "enabled": true,
-          "displayName": "TechBrew",
-          "loginTheme": "keycloak",
-          "accessTokenLifespan": 300,
-          "ssoSessionIdleTimeout": 1800,
-          "ssoSessionMaxLifespan": 36000,
-          "defaultGroups": ["users"],
-          "groups": [
-            {
-              "name": "grafana-admins",
-              "path": "/grafana-admins"
-            }
-          ],
-          "roles": {
-            "realm": [
-              {
-                "name": "grafana-admin",
-                "description": "Grafana administrator role"
-              }
-            ]
-          },
-          "clients": [
-            {
-              "clientId": "grafana",
-              "enabled": true,
-              "clientAuthenticatorType": "client-secret",
-              "secret": "grafana-client-secret-12345",
-              "redirectUris": [
-                "https://grafana.admin.dev.techbrewhq.com/*"
-              ],
-              "webOrigins": [
-                "https://grafana.admin.dev.techbrewhq.com"
-              ],
-              "protocol": "openid-connect",
-              "publicClient": false,
-              "standardFlowEnabled": true,
-              "implicitFlowEnabled": false,
-              "directAccessGrantsEnabled": true,
-              "serviceAccountsEnabled": true,
-              "defaultClientScopes": [
-                "email",
-                "profile"
-              ],
-              "protocolMappers": [
-                {
-                  "name": "groups",
-                  "protocol": "openid-connect",
-                  "protocolMapper": "oidc-group-membership-mapper",
-                  "config": {
-                    "claim.name": "groups",
-                    "full.path": "true",
-                    "id.token.claim": "true",
-                    "access.token.claim": "true",
-                    "userinfo.token.claim": "true"
-                  }
-                }
-              ]
-            }
-          ]
-        }

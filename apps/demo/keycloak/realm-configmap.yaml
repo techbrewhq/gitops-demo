@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-realm
+  namespace: keycloak
+data:
+  realm.json: |
+    {
+      "realm": "techbrew",
+      "enabled": true,
+      "displayName": "TechBrew",
+      "loginTheme": "keycloak",
+      "accessTokenLifespan": 300,
+      "ssoSessionIdleTimeout": 1800,
+      "ssoSessionMaxLifespan": 36000,
+      "defaultGroups": ["users"],
+      "groups": [
+        {
+          "name": "grafana-admins",
+          "path": "/grafana-admins"
+        }
+      ],
+      "roles": {
+        "realm": [
+          {
+            "name": "grafana-admin",
+            "description": "Grafana administrator role"
+          }
+        ]
+      },
+      "clients": [
+        {
+          "clientId": "grafana",
+          "enabled": true,
+          "clientAuthenticatorType": "client-secret",
+          "secret": "grafana-client-secret-12345",
+          "redirectUris": [
+            "https://grafana.admin.dev.techbrewhq.com/*"
+          ],
+          "webOrigins": [
+            "https://grafana.admin.dev.techbrewhq.com"
+          ],
+          "protocol": "openid-connect",
+          "publicClient": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": true,
+          "serviceAccountsEnabled": true,
+          "defaultClientScopes": [
+            "email",
+            "profile"
+          ],
+          "protocolMappers": [
+            {
+              "name": "groups",
+              "protocol": "openid-connect",
+              "protocolMapper": "oidc-group-membership-mapper",
+              "config": {
+                "claim.name": "groups",
+                "full.path": "true",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "userinfo.token.claim": "true"
+              }
+            }
+          ]
+        }
+      ]
+    } 
