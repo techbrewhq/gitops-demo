@@ -32,14 +32,6 @@ spec:
         value: "true"
       - name: KEYCLOAK_PRODUCTION
         value: "true"
-    extraVolumes:
-      - name: keycloak-certs
-        secret:
-          secretName: keycloak-tls
-    extraVolumeMounts:
-      - name: keycloak-certs
-        mountPath: "/opt/bitnami/keycloak/certs"
-        readOnly: true
     replicaCount: 1
     resources:
       requests:
