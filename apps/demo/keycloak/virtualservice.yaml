@@ -5,12 +5,24 @@ metadata:
   namespace: keycloak
 spec:
   gateways:
-    - istio-admin-gateway/istio-admin-gateway # Reference the admin gateway
+    - istio-admin-gateway/istio-admin-gateway
   hosts:
-    - keycloak.admin.dev.techbrewhq.com
+    - keycloak.admin.techbrewhq.com
   http:
-    - route:
+    - match:
+        - uri:
+            prefix: "/"
+      route:
         - destination:
-            host: keycloak.keycloak.svc.cluster.local # Fully qualified service name
+            host: keycloak.keycloak.svc.cluster.local
             port:
-              number: 80 # Default Keycloak port (adjust if needed)
+              number: 80
+      headers:
+        request:
+          set:
+            X-Forwarded-Proto: "https"
+            X-Forwarded-Port: "443"
+        response:
+          set:
+            Strict-Transport-Security: "max-age=31536000; includeSubDomains"
+            Content-Security-Policy: "frame-src 'self' https:; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:;"
