@@ -18,25 +18,19 @@ spec:
     extraEnvVars:
       - name: KC_HOSTNAME
         value: "keycloak.admin.techbrewhq.com"
-      - name: KC_HOSTNAME_ADMIN
-        value: "keycloak.admin.techbrewhq.com"
       - name: KC_PROXY
         value: "edge"
       - name: KC_HOSTNAME_STRICT
-        value: "true"
+        value: "false"
       - name: KC_HOSTNAME_STRICT_HTTPS
         value: "true"
       - name: KC_HTTP_ENABLED
         value: "true"
       - name: KC_HTTP_RELATIVE_PATH
         value: "/"
-      - name: KEYCLOAK_PRODUCTION
-        value: "true"
-      - name: KC_HTTPS_CERTIFICATE_FILE
-        value: "/opt/bitnami/keycloak/certs/tls.crt"
-      - name: KC_HTTPS_CERTIFICATE_KEY_FILE
-        value: "/opt/bitnami/keycloak/certs/tls.key"
       - name: PROXY_ADDRESS_FORWARDING
+        value: "true"
+      - name: KEYCLOAK_PRODUCTION
         value: "true"
     extraVolumes:
       - name: keycloak-certs
