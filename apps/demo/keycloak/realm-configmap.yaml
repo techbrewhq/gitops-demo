@@ -44,14 +44,10 @@ data:
           "clientAuthenticatorType": "client-secret",
           "secret": "grafana-client-secret-12345",
           "redirectUris": [
-            "https://grafana.admin.dev.techbrewhq.com/*",
-            "http://grafana.admin.dev.techbrewhq.com:3000/*",
-            "http://grafana.admin.dev.techbrewhq.com/*"
+            "https://grafana.admin.dev.techbrewhq.com/*"
           ],
           "webOrigins": [
-            "https://grafana.admin.dev.techbrewhq.com",
-            "http://grafana.admin.dev.techbrewhq.com:3000",
-            "http://grafana.admin.dev.techbrewhq.com"
+            "https://grafana.admin.dev.techbrewhq.com"
           ],
           "protocol": "openid-connect",
           "publicClient": false,
