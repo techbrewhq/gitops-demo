@@ -14,9 +14,9 @@ spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
-  commonName: "*.admin.techbrewhq.com"
+  commonName: "*.admin.dev.techbrewhq.com"
   dnsNames:
-    - "*.admin.techbrewhq.com"
+    - "*.admin.dev.techbrewhq.com"
   privateKey:
     rotationPolicy: Always
 ---
@@ -70,7 +70,7 @@ spec:
             name: https
             protocol: HTTPS
           hosts:
-            - "*.admin.techbrewhq.com"
+            - "*.admin.dev.techbrewhq.com"
           tls:
             mode: SIMPLE
             credentialName: gateway-tls # Must match the cert-manager secret name
