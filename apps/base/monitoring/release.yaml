@@ -15,6 +15,8 @@ spec:
         namespace: monitoring
       interval: 1m
   values:
+    crds:
+      enabled: false
     grafana:
       enabled: true
       adminPassword: "admin"  # Change this in the demo overlay
@@ -34,8 +36,67 @@ spec:
           - grafana.admin.dev.techbrewhq.com
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt
-    admissionWebhooks:
-      patch:
-        podAnnotations:
-          sidecar.istio.io/inject: "false"
+    prometheus:
+      prometheusSpec:
+        podMetadata:
+          annotations:
+            proxy.istio.io/config: |
+              proxyMetadata:
+                OUTPUT_CERTS: /etc/istio-output-certs
+            sidecar.istio.io/userVolumeMount: '[{"name": "istio-certs", "mountPath": "/etc/istio-output-certs"}]'
+            traffic.sidecar.istio.io/includeOutboundIPRanges: ""
+          labels:
+            app: prometheus
+        enableFeatures:
+          - remote-write-receiver
+        additionalConfig:
+          scrapeClasses:
+            - name: istio-certs
+              default: true
+              tlsConfig:
+                caFile: /etc/prom-certs/root-cert.pem
+                certFile: /etc/prom-certs/cert-chain.pem
+                keyFile: /etc/prom-certs/key.pem
+                insecureSkipVerify: true
+        volumeMounts:
+          - mountPath: /etc/prom-certs/
+            name: istio-certs
+        volumes:
+          - name: istio-certs
+            emptyDir:
+              medium: Memory
+    prometheusOperator:
+      admissionWebhooks:
+        patch:
+          podAnnotations:
+            sidecar.istio.io/inject: "false"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
+    alertmanager:
+      alertmanagerSpec:
+        podMetadata:
+          annotations:
+            proxy.istio.io/config: |
+              proxyMetadata:
+                OUTPUT_CERTS: /etc/istio-output-certs
+            sidecar.istio.io/userVolumeMount: '[{"name": "istio-certs", "mountPath": "/etc/istio-output-certs"}]'
+            traffic.sidecar.istio.io/includeOutboundIPRanges: ""
+        scheme: "https"
+        tlsConfig:
+          caFile: /etc/prom-certs/root-cert.pem
+          certFile: /etc/prom-certs/cert-chain.pem
+          keyFile: /etc/prom-certs/key.pem
+          insecureSkipVerify: true
+        volumeMounts:
+          - mountPath: /etc/prom-certs/
+            name: istio-certs
+        volumes:
+          - name: istio-certs
+            emptyDir:
+              medium: Memory
  
