@@ -35,8 +35,8 @@ spec:
         value: "true"
       - name: KEYCLOAK_PRODUCTION
         value: "true"
-      - name: KEYCLOAK_IMPORT
-        value: "/opt/bitnami/keycloak/data/import/realm.json"
+      - name: KEYCLOAK_EXTRA_ARGS
+        value: "--import-realm"
     extraVolumes:
       - name: realm-config
         configMap:
