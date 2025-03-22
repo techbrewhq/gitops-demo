@@ -16,21 +16,21 @@ spec:
       interval: 1m
   values:
     extraEnvVars:
-      - name: KC_HOSTNAME_URL
-        value: https://sso.dev.techbrewhq.com
-      - name: KC_HOSTNAME_ADMIN_URL
-        value: https://keycloak.admin.dev.techbrewhq.com
-      - name: KEYCLOAK_FRONTEND_URL
-        value: "https://keycloak.admin.dev.techbrewhq.com" # External URL with HTTPS
-      - name: PROXY_ADDRESS_FORWARDING
-        value: "true"
+      - name: KC_HOSTNAME
+        value: "keycloak.admin.dev.techbrewhq.com"
+      - name: KC_HOSTNAME_ADMIN
+        value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
         value: "edge"
-      - name: KC_HOSTNAME_URL
-        value: "https://keycloak.admin.dev.techbrewhq.com"
       - name: KC_HOSTNAME_STRICT
         value: "false"
       - name: KC_HOSTNAME_STRICT_HTTPS
+        value: "true"
+      - name: KC_HTTP_ENABLED
+        value: "true"
+      - name: KC_HTTP_RELATIVE_PATH
+        value: "/"
+      - name: KEYCLOAK_PRODUCTION
         value: "true"
     replicaCount: 1
     resources:

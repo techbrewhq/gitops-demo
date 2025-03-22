@@ -11,6 +11,6 @@ spec:
   http:
     - route:
         - destination:
-            host: keycloak-headless.keycloak.svc.cluster.local # Fully qualified service name
+            host: keycloak.keycloak.svc.cluster.local # Fully qualified service name
             port:
-              number: 8080 # Default Keycloak port (adjust if needed)
+              number: 80 # Default Keycloak port (adjust if needed)
