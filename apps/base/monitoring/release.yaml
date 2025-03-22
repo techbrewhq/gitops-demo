@@ -33,4 +33,9 @@ spec:
         hosts:
           - grafana.admin.dev.techbrewhq.com
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt 
+          cert-manager.io/cluster-issuer: letsencrypt
+    admissionWebhooks:
+      patch:
+        podAnnotations:
+          sidecar.istio.io/inject: "false"
+ 
