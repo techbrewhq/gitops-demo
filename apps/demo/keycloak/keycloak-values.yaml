@@ -20,30 +20,55 @@ spec:
       adminPassword: "admin123!"
     extraEnvVars:
       - name: KC_HOSTNAME
-        value: "https://keycloak.admin.dev.techbrewhq.com"
+        value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
-        value: "edge"
+        value: "passthrough"
+      - name: KC_HTTPS_CERTIFICATE_FILE
+        value: "/opt/bitnami/keycloak/certs/tls.crt"
+      - name: KC_HTTPS_CERTIFICATE_KEY_FILE
+        value: "/opt/bitnami/keycloak/certs/tls.key"
       - name: KC_HOSTNAME_STRICT
-        value: "false"
+        value: "true"
       - name: KC_HOSTNAME_STRICT_HTTPS
         value: "true"
       - name: KC_HTTP_ENABLED
+        value: "false"
+      - name: KC_HTTPS_ENABLED
         value: "true"
-      - name: KC_HTTP_RELATIVE_PATH
-        value: "/"
-      - name: PROXY_ADDRESS_FORWARDING
-        value: "true"
-      - name: KEYCLOAK_PRODUCTION
-        value: "true"
+      - name: KC_HTTPS_PORT
+        value: "8443"
       - name: KEYCLOAK_EXTRA_ARGS
         value: "--import-realm"
     extraVolumes:
       - name: realm-config
         configMap:
           name: keycloak-realm
+      - name: keycloak-tls
+        secret:
+          secretName: keycloak-tls
     extraVolumeMounts:
       - name: realm-config
         mountPath: /opt/bitnami/keycloak/data/import/
+      - name: keycloak-tls
+        mountPath: /opt/bitnami/keycloak/certs/
+    service:
+      type: ClusterIP
+      ports:
+        - name: https
+          port: 8443
+          targetPort: 8443
+          protocol: TCP
+    ingress:
+      enabled: true
+      ingressClassName: "istio"
+      hostname: keycloak.admin.dev.techbrewhq.com
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      tls: true
+      extraTls:
+        - hosts:
+            - keycloak.admin.dev.techbrewhq.com
+          secretName: keycloak-tls
     replicaCount: 1
     resources:
       requests:

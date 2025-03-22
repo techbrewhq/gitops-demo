@@ -24,7 +24,8 @@ spec:
         GF_SERVER_ROOT_URL: "https://grafana.admin.dev.techbrewhq.com"
         GF_SERVER_DOMAIN: "grafana.admin.dev.techbrewhq.com"
         GF_SERVER_PROTOCOL: "https"
-        GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+        GF_SERVER_CERT_FILE: "/etc/grafana/certs/tls.crt"
+        GF_SERVER_CERT_KEY: "/etc/grafana/certs/tls.key"
         GF_AUTH_DISABLE_LOGIN_FORM: "true"
         GF_AUTH_OAUTH_AUTO_LOGIN: "true"
         GF_AUTH_SIGNOUT_REDIRECT_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fgrafana.admin.dev.techbrewhq.com"
@@ -33,7 +34,8 @@ spec:
           root_url: "https://grafana.admin.dev.techbrewhq.com"
           domain: "grafana.admin.dev.techbrewhq.com"
           protocol: "https"
-          serve_from_sub_path: true
+          cert_file: "/etc/grafana/certs/tls.crt"
+          cert_key: "/etc/grafana/certs/tls.key"
         auth:
           disable_login_form: true
           oauth_auto_login: true
@@ -54,6 +56,13 @@ spec:
           name_attribute_path: "name"
           email_attribute_path: "email"
           tls_skip_verify_insecure: false
+      extraVolumes:
+        - name: grafana-tls
+          secret:
+            secretName: grafana-tls
+      extraVolumeMounts:
+        - name: grafana-tls
+          mountPath: /etc/grafana/certs/
       ingress:
         enabled: true
         ingressClassName: "istio"
