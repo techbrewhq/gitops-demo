@@ -14,8 +14,6 @@ spec:
         GF_SERVER_ROOT_URL: "https://grafana.admin.dev.techbrewhq.com"
         GF_SERVER_DOMAIN: "grafana.admin.dev.techbrewhq.com"
         GF_SERVER_PROTOCOL: "https"
-        GF_SERVER_CERT_FILE: "/etc/grafana/certs/tls.crt"
-        GF_SERVER_CERT_KEY: "/etc/grafana/certs/tls.key"
         GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "grafana"
         GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/auth"
         GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/token"
@@ -30,8 +28,6 @@ spec:
           root_url: https://grafana.admin.dev.techbrewhq.com
           domain: grafana.admin.dev.techbrewhq.com
           protocol: https
-          cert_file: /etc/grafana/certs/tls.crt
-          cert_key: /etc/grafana/certs/tls.key
         auth:
           disable_login_form: false
         auth.generic_oauth:
