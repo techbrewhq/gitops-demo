@@ -6,7 +6,7 @@ metadata:
 spec:
   values:
     grafana:
-      adminPassword: "grafana123!"  # Change this to a secure password
+      adminPassword: "grafana123!" # Change this to a secure password
       envFrom:
         - secretRef:
             name: grafana-oauth
@@ -21,6 +21,10 @@ spec:
               name: grafana-oauth
               key: client-secret
       grafana.ini:
+        server:
+          domain: grafana.admin.dev.techbrewhq.com
+          root_url: https://grafana.admin.dev.techbrewhq.com
+          # Remove cert_file and cert_key settings - let Istio handle TLS
         auth:
           disable_login_form: false
           oauth_auto_login: false
@@ -32,4 +36,15 @@ spec:
           email_attribute_path: "email"
           groups_attribute_path: "groups"
           role_attribute_path: "contains(groups[*], 'grafana-admins') && 'Admin' || 'Viewer'"
-          tls_skip_verify_insecure: false 
+          tls_skip_verify_insecure: false
+      ingress:
+        enabled: true
+        ingressClassName: "istio"
+        hosts:
+          - grafana.admin.dev.techbrewhq.com
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+        tls:
+          - hosts:
+              - grafana.admin.dev.techbrewhq.com
+            secretName: grafana-tls
