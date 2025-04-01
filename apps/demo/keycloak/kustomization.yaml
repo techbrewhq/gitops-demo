@@ -4,5 +4,6 @@ namespace: keycloak
 resources:
   - ../../base/keycloak
   - virtualservice.yaml
+  - realm-configmap.yaml
 patchesStrategicMerge:
   - keycloak-values.yaml
