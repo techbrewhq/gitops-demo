@@ -11,29 +11,25 @@ spec:
         - secretRef:
             name: grafana-oauth
       env:
-        GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "grafana"
-        GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/auth"
-        GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/token"
-        GF_AUTH_GENERIC_OAUTH_API_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/userinfo"
-        GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
-          valueFrom:
-            secretKeyRef:
-              name: grafana-oauth
-              key: client-secret
+      #        GF_AUTH_GENERIC_OAUTH_CLIENT_ID: "grafana"
+      #        GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/auth"
+      #        GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/token"
+      #        GF_AUTH_GENERIC_OAUTH_API_URL: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/userinfo"
+      #        GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+      #          valueFrom:
+      #            secretKeyRef:
+      #              name: grafana-oauth
+      #              key: client-secret
       grafana.ini:
         server:
-          domain: grafana.admin.dev.techbrewhq.com
           root_url: https://grafana.admin.dev.techbrewhq.com
-          # Remove cert_file and cert_key settings - let Istio handle TLS
-        auth:
-          disable_login_form: false
-          oauth_auto_login: false
-          signout_redirect_url: "https://keycloak.admin.dev.techbrewhq.com/realms/techbrew/protocol/openid-connect/logout"
-        auth.generic_oauth:
-          enabled: true
-          allow_sign_up: true
-          scopes: "openid profile email"
-          email_attribute_path: "email"
-          groups_attribute_path: "groups"
-          role_attribute_path: "contains(groups[*], 'grafana-admins') && 'Admin' || 'Viewer'"
-          tls_skip_verify_insecure: false
+#        auth:
+#          disable_login_form: false
+#        auth.generic_oauth:
+#          enabled: true
+#          allow_sign_up: true
+#          scopes: "openid profile email"
+#          email_attribute_path: "email"
+#          groups_attribute_path: "groups"
+#          role_attribute_path: "contains(groups[*], 'grafana-admins') && 'Admin' || 'Viewer'"
+#          tls_skip_verify_insecure: false
