@@ -16,10 +16,10 @@ spec:
       interval: 1m
   values:
     crds:
-      enabled: false
+      enabled: true
     grafana:
       enabled: true
-      adminPassword: "admin"  # Change this in the demo overlay
+      adminPassword: "admin" # Change this in the demo overlay
       env:
         GF_SERVER_ROOT_URL: "https://grafana.admin.dev.techbrewhq.com"
         GF_SERVER_DOMAIN: "grafana.admin.dev.techbrewhq.com"
@@ -137,4 +137,4 @@ spec:
           - name: istio-certs
             emptyDir:
               medium: Memory
- 
+
