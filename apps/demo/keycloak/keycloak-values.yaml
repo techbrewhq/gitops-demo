@@ -54,7 +54,11 @@ spec:
     service:
       type: ClusterIP
       ports:
-        - name: https
+        http: # Add this port definition
+          port: 8080
+          targetPort: 8080
+          protocol: TCP
+        https:
           port: 8443
           targetPort: 8443
           protocol: TCP
