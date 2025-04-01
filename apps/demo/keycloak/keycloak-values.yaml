@@ -8,7 +8,6 @@ spec:
   chart:
     spec:
       chart: keycloak
-      version: "24.4.0"
       sourceRef:
         kind: HelmRepository
         name: keycloak
@@ -54,25 +53,8 @@ spec:
     service:
       type: ClusterIP
       ports:
-        http: # Add this port definition
-          port: 8080
-          targetPort: 8080
-          protocol: TCP
-        https:
-          port: 8443
-          targetPort: 8443
-          protocol: TCP
-    ingress:
-      enabled: true
-      ingressClassName: "istio"
-      hostname: keycloak.admin.dev.techbrewhq.com
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt
-      tls: true
-      extraTls:
-        - hosts:
-            - keycloak.admin.dev.techbrewhq.com
-          secretName: keycloak-tls
+        http: 8080
+        https: 8443
     replicaCount: 1
     resources:
       requests:
