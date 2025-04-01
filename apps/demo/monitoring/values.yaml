@@ -37,14 +37,3 @@ spec:
           groups_attribute_path: "groups"
           role_attribute_path: "contains(groups[*], 'grafana-admins') && 'Admin' || 'Viewer'"
           tls_skip_verify_insecure: false
-      ingress:
-        enabled: true
-        ingressClassName: "istio"
-        hosts:
-          - grafana.admin.dev.techbrewhq.com
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt
-        tls:
-          - hosts:
-              - grafana.admin.dev.techbrewhq.com
-            secretName: grafana-tls
