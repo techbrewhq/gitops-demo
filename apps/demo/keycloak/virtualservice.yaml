@@ -7,14 +7,19 @@ spec:
   hosts:
     - keycloak.admin.dev.techbrewhq.com
   gateways:
-    - admin-gateway
-  tls:
+    - istio-admin-gateway/istio-admin-gateway
+  http:
     - match:
-        - sniHosts:
-            - keycloak.admin.dev.techbrewhq.com
+        - uri:
+            prefix: "/"
       route:
         - destination:
-            host: keycloak
+            host: keycloak.keycloak.svc.cluster.local
             port:
               number: 8443
-          weight: 100
+      headers:
+        request:
+          set:
+            X-Forwarded-Proto: "https"
+            X-Forwarded-Port: "443"
+            X-Forwarded-Host: "keycloak.admin.dev.techbrewhq.com"
