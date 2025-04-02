@@ -62,17 +62,6 @@ spec:
           port: 8443
           targetPort: 8443
           protocol: TCP
-    ingress:
-      enabled: true
-      ingressClassName: "istio"
-      hostname: keycloak.admin.dev.techbrewhq.com
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt
-      tls: true
-      extraTls:
-        - hosts:
-            - keycloak.admin.dev.techbrewhq.com
-          secretName: keycloak-tls
     replicaCount: 1
     resources:
       requests:
