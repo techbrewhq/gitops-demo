@@ -23,10 +23,6 @@ spec:
         value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
         value: "passthrough"
-      - name: KC_HTTPS_CERTIFICATE_FILE
-        value: "/opt/bitnami/keycloak/certs/tls.crt"
-      - name: KC_HTTPS_CERTIFICATE_KEY_FILE
-        value: "/opt/bitnami/keycloak/certs/tls.key"
       - name: KC_HOSTNAME_STRICT
         value: "true"
       - name: KC_HOSTNAME_STRICT_HTTPS
