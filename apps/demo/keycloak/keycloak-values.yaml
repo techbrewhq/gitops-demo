@@ -18,23 +18,23 @@ spec:
       adminUser: admin
       adminPassword: "admin123!"
     extraEnvVars:
-      - name: KC_FRONTEND_URL
-        value: "https://keycloak.admin.dev.techbrewhq.com"
       - name: KC_HOSTNAME
         value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
         value: "passthrough"
-      - name: KC_HOSTNAME_STRICT
         value: "true"
       - name: KC_HOSTNAME_STRICT_HTTPS
         value: "true"
       - name: KC_HTTP_ENABLED
-        value: "true" # Allow HTTP between Istio and Keycloak
+        value: "false"
       - name: KC_HTTPS_ENABLED
-        value: "false" # Disable HTTPS inside the cluster (TLS is terminated at Istio)
+        value: "true"
+      - name: KC_HTTPS_PORT
+        value: "8443"
       - name: KEYCLOAK_EXTRA_ARGS
         value: "--import-realm"
-    extraVolumes:
+      - name: KC_FRONTEND_URL
+        value: "https://keycloak.admin.dev.techbrewhq.com"
       - name: realm-config
         configMap:
           name: keycloak-realm
