@@ -35,13 +35,6 @@ spec:
         value: "8443"
       - name: KEYCLOAK_EXTRA_ARGS
         value: "--import-realm"
-    extraVolumes:
-      - name: realm-config
-        configMap:
-          name: keycloak-realm
-    extraVolumeMounts:
-      - name: realm-config
-        mountPath: /opt/bitnami/keycloak/data/import/
     service:
       type: ClusterIP
       ports:
@@ -61,3 +54,4 @@ spec:
       limits:
         cpu: "1000m"
         memory: "2Gi"
+    production: true
