@@ -16,7 +16,7 @@ spec:
         - destination:
             host: keycloak.keycloak.svc.cluster.local
             port:
-              number: 80
+              number: 8080
       headers:
         request:
           set:
