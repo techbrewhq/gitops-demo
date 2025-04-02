@@ -37,15 +37,11 @@ spec:
         value: "--import-realm"
     service:
       type: ClusterIP
+      http:
+        enabled: true
       ports:
-        http: # Add this port definition
-          port: 8080
-          targetPort: 8080
-          protocol: TCP
-        https:
-          port: 8443
-          targetPort: 8443
-          protocol: TCP
+        http: 80
+        https: 443
     replicaCount: 1
     resources:
       requests:
