@@ -12,6 +12,8 @@ spec:
     - match:
         - uri:
             prefix: "/"
+      rewrite:
+        uri: "/"
       route:
         - destination:
             host: keycloak.keycloak.svc.cluster.local

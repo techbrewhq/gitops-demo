@@ -18,6 +18,8 @@ spec:
       adminUser: admin
       adminPassword: "admin123!"
     extraEnvVars:
+      - name: KC_FRONTEND_URL
+        value: "https://keycloak.admin.dev.techbrewhq.com"
       - name: KC_HOSTNAME
         value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
