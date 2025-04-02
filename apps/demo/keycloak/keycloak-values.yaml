@@ -43,14 +43,9 @@ spec:
       - name: realm-config
         configMap:
           name: keycloak-realm
-      - name: keycloak-tls
-        secret:
-          secretName: keycloak-tls
     extraVolumeMounts:
       - name: realm-config
         mountPath: /opt/bitnami/keycloak/data/import/
-      - name: keycloak-tls
-        mountPath: /opt/bitnami/keycloak/certs/
     service:
       type: ClusterIP
       ports:
