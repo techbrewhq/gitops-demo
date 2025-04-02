@@ -21,17 +21,15 @@ spec:
       - name: KC_HOSTNAME
         value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
-        value: "passthrough"
+        value: "edge" # Change from passthrough to edge (since Istio terminates TLS)
       - name: KC_HOSTNAME_STRICT
         value: "true"
       - name: KC_HOSTNAME_STRICT_HTTPS
         value: "true"
       - name: KC_HTTP_ENABLED
-        value: "false"
+        value: "true" # Allow HTTP between Istio and Keycloak
       - name: KC_HTTPS_ENABLED
-        value: "true"
-      - name: KC_HTTPS_PORT
-        value: "8443"
+        value: "false" # Disable HTTPS inside the cluster (TLS is terminated at Istio)
       - name: KEYCLOAK_EXTRA_ARGS
         value: "--import-realm"
     extraVolumes:
