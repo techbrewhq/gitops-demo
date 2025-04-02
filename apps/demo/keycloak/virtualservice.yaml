@@ -20,4 +20,4 @@ spec:
         - destination:
             host: keycloak-http.keycloak.svc.cluster.local
             port:
-              number: 8080
+              number: 443
