@@ -33,7 +33,7 @@ spec:
         server:
           root_url: "https://grafana.admin.dev.techbrewhq.com"
           domain: "grafana.admin.dev.techbrewhq.com"
-          protocol: "https"
+          protocol: "http"
           cert_file: "/etc/grafana/certs/tls.crt"
           cert_key: "/etc/grafana/certs/tls.key"
         auth:
@@ -137,4 +137,3 @@ spec:
           - name: istio-certs
             emptyDir:
               medium: Memory
-
