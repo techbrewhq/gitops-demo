@@ -28,9 +28,9 @@ spec:
       - name: KC_HOSTNAME_STRICT_HTTPS
         value: "true"
       - name: KC_HTTP_ENABLED
-        value: "true" # Enable HTTP since Istio will handle TLS
+        value: "false" # Enable HTTP since Istio will handle TLS
       - name: KC_HTTPS_ENABLED
-        value: "false" # Disable HTTPS as Istio handles it
+        value: "true" # Disable HTTPS as Istio handles it
       - name: KEYCLOAK_EXTRA_ARGS
         value: "--import-realm"
     service:
