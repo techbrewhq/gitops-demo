@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: zitadel
+  namespace: zitadel
+spec:
+  gateways:
+    - istio-admin-gateway/istio-admin-gateway
+  hosts:
+    - zitadel.admin.dev.techbrewhq.com
+  http:
+    - route:
+        - destination:
+            host: zitadel.zitadel.svc.cluster.local
+            port:
+              number: 8080
