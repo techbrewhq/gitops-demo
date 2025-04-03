@@ -7,7 +7,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: postgres # Name of the helm chart
+      chart: postgresql # Name of the helm chart
       sourceRef:
         kind: HelmRepository # <HelmRepository|GitRepository|Bucket>
         name: postgresql
