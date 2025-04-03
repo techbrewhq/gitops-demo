@@ -22,26 +22,21 @@ spec:
       - name: KC_HOSTNAME
         value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
-        value: "passthrough"
+        value: "edge" # Changed from passthrough to edge
       - name: KC_HOSTNAME_STRICT
         value: "true"
       - name: KC_HOSTNAME_STRICT_HTTPS
         value: "true"
       - name: KC_HTTP_ENABLED
-        value: "false"
+        value: "true" # Enable HTTP since Istio will handle TLS
       - name: KC_HTTPS_ENABLED
-        value: "true"
-      - name: KC_HTTPS_PORT
-        value: "8443"
+        value: "false" # Disable HTTPS as Istio handles it
       - name: KEYCLOAK_EXTRA_ARGS
         value: "--import-realm"
     service:
       type: ClusterIP
-      http:
-        enabled: true
       ports:
-        http: 80
-        https: 443
+        http: 8080 # Default Keycloak HTTP port
     replicaCount: 1
     resources:
       requests:
