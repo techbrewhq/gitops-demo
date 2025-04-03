@@ -8,16 +8,9 @@ spec:
     - istio-admin-gateway/istio-admin-gateway
   hosts:
     - keycloak.admin.dev.techbrewhq.com
-
   http:
-    - headers:
-        request:
-          add:
-            istio-mtls-client-certificate: "%DOWNSTREAM_PEER_CERT%"
-          remove:
-            - istio-mtls-client-certificate
-      route:
+    - route:
         - destination:
-            host: keycloak-http.keycloak.svc.cluster.local
+            host: keycloak.keycloak.svc.cluster.local
             port:
-              number: 8443
+              number: 8080
