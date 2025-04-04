@@ -14,6 +14,14 @@ spec:
         namespace: postgres
       interval: 1m
   values:
+    auth:
+      username: postgres
+      password: postgres123
+      database: zitadel
     primary:
       pgHbaConfiguration: |
-        host all all all trust
+        host all all all md5
+    initdb:
+      user: postgres
+      password: postgres123
+      database: zitadel

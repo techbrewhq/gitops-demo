@@ -23,10 +23,12 @@ spec:
             MaxConnIdleTime: 5m
             User:
               Username: postgres
+              Password: postgres123
               SSL:
                 Mode: disable
             Admin:
               Username: postgres
+              Password: postgres123
               SSL:
                 Mode: disable
       debug:
