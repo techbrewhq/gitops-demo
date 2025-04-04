@@ -31,3 +31,11 @@ spec:
                 Mode: disable
       debug:
         enabled: true
+      initJob:
+        # Once ZITADEL is installed, the initJob can be disabled.
+        enabled: true
+        annotations:
+          helm.sh/hook: pre-install,pre-upgrade
+          helm.sh/hook-delete-policy: before-hook-creation
+          helm.sh/hook-weight: "1"
+          sidecar.istio.io/inject: "false"
