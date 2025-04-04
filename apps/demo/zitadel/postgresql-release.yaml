@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: postgres
-  namespace: postgres
+  namespace: zitadel
 spec:
   interval: 1m
   chart:
@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository # <HelmRepository|GitRepository|Bucket>
         name: postgresql
-        namespace: postgres
+        namespace: zitadel
       interval: 1m
   values:
     primary:
