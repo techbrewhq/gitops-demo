@@ -29,3 +29,5 @@ spec:
               Username: postgres
               SSL:
                 Mode: disable
+      debug:
+        enabled: true
