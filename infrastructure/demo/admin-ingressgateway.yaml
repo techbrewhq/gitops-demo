@@ -41,9 +41,6 @@ spec:
       type: LoadBalancer
       loadBalancerIP: 172.18.0.101 # Ensure this falls within MetalLB's IP range
       ports:
-        - name: http
-          port: 80
-          targetPort: 8080
         - name: https
           port: 443
           targetPort: 8443
