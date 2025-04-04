@@ -34,10 +34,25 @@ spec:
       debug:
         enabled: true
     initJob:
-      # Once ZITADEL is installed, the initJob can be disabled.
       enabled: true
       annotations:
         helm.sh/hook: pre-install,pre-upgrade
         helm.sh/hook-delete-policy: before-hook-creation
         helm.sh/hook-weight: "1"
-        sidecar.istio.io/inject: "false"
+      backoffLimit: 5
+      activeDeadlineSeconds: 300
+      podAnnotations:
+        sidecar.istio.io/inject: "false" # 👈 This disables the sidecar
+      command: ""
+
+    setupJob:
+      annotations:
+        helm.sh/hook: pre-install,pre-upgrade
+        helm.sh/hook-delete-policy: before-hook-creation
+        helm.sh/hook-weight: "2"
+      backoffLimit: 5
+      activeDeadlineSeconds: 300
+      podAnnotations:
+        sidecar.istio.io/inject: "false" # 👈 This disables the sidecar
+      additionalArgs:
+        - "--init-projections=true"
