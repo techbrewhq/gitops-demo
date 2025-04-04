@@ -14,7 +14,7 @@ spec:
           Enabled: false
         Database:
           Postgres:
-            Host: db-postgresql
+            Host: postgres-postgresql.postgres.svc.cluster.local
             Port: 5432
             Database: zitadel
             MaxOpenConns: 20
@@ -26,7 +26,7 @@ spec:
               SSL:
                 Mode: disable
             Admin:
-              Username: postgres
+              Username: zitadel
               SSL:
                 Mode: disable
       secretConfig:
