@@ -4,5 +4,7 @@ namespace: zitadel
 resources:
   - ../../base/zitadel
   - virtualservice.yaml
+  - postgres-repo.yaml
+  - postgresql-release.yaml
 patchesStrategicMerge:
   - values.yaml
