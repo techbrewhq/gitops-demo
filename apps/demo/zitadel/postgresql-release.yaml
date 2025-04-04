@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository # <HelmRepository|GitRepository|Bucket>
         name: postgresql
-        namespace: postgres
+        namespace: zitadel
       interval: 1m
   values:
     auth:
