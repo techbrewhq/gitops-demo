@@ -14,6 +14,13 @@ spec:
         namespace: postgres
       interval: 1m
   values:
+    global:
+      postgresql:
+        auth:
+          username: "zitadel"
+          password: "xyz" # This should match the password in your Zitadel secretConfig
+          database: "zitadel"
+          postgresPassword: "abc" # This should match the admin password in Zitadel secretConfig
     primary:
       pgHbaConfiguration: |
         host all all all trust
