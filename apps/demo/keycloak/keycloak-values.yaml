@@ -31,6 +31,8 @@ spec:
         value: "--import-realm"
       - name: PROXY_ADDRESS_FORWARDING
         value: "true"
+      - name: KC_PROXY_HEADERS
+        value: "xforwarded"
     service:
       type: ClusterIP
       http:

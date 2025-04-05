@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: keycloak-pub-access
+  namespace: keycloak
+  gateways:
+    - istio-tenant-gateway/tenant-gateway
+  hosts:
+    - sso.uds.dev
+  http:
+    - headers:
+        request:
+          add:
+            istio-mtls-client-certificate: "%DOWNSTREAM_PEER_CERT%"
+          remove:
+            - istio-mtls-client-certificate
+      route:
+        - destination:
+            host: keycloak-http.keycloak.svc.cluster.local
+            port:
+              number: 8080
