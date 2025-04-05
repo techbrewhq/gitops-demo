@@ -20,11 +20,11 @@ spec:
       adminPassword: "admin123!"
     extraEnvVars:
       - name: KC_HOSTNAME
+        value: "sso.dev.techbrewhq.com"
+      - name: KC_HOSTNAME_ADMIN
         value: "keycloak.admin.dev.techbrewhq.com"
       - name: KC_PROXY
         value: "edge"
-      - name: KC_HOSTNAME_STRICT
-        value: "true"
       - name: KC_HTTP_ENABLED
         value: "true"
       - name: KEYCLOAK_EXTRA_ARGS
