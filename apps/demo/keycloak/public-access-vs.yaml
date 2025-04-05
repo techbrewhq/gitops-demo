@@ -3,6 +3,7 @@ kind: VirtualService
 metadata:
   name: keycloak-pub-access
   namespace: keycloak
+spec:
   gateways:
     - istio-tenant-gateway/tenant-gateway
   hosts:
