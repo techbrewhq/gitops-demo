@@ -57,7 +57,7 @@ spec:
       pullPolicy: IfNotPresent
 
     gateways:
-      enabled: true
+      enabled: false
       name: istio-admin-gateway
       selector:
         istio: istio-admin-gateway # Ensure this matches the pod labels

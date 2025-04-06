@@ -63,7 +63,7 @@ spec:
       pullPolicy: IfNotPresent
 
     gateways:
-      enabled: true
+      enabled: false
       name: istio-tenant-gateway
       selector:
         istio: istio-tenant-gateway # Ensure this matches the pod labels
