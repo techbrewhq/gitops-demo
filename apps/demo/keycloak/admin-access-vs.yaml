@@ -17,6 +17,6 @@ spec:
             - istio-mtls-client-certificate
       route:
         - destination:
-            host: keycloak-http.keycloak.svc.cluster.local
+            host: keycloak.keycloak.svc.cluster.local
             port:
               number: 8080

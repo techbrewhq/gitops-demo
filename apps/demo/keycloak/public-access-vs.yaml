@@ -7,7 +7,7 @@ spec:
   gateways:
     - istio-tenant-gateway/tenant-gateway
   hosts:
-    - sso.uds.dev
+    - sso.dev.techbrewhq.com
   http:
     - headers:
         request:
@@ -17,6 +17,6 @@ spec:
             - istio-mtls-client-certificate
       route:
         - destination:
-            host: keycloak-http.keycloak.svc.cluster.local
+            host: keycloak.keycloak.svc.cluster.local
             port:
               number: 8080
