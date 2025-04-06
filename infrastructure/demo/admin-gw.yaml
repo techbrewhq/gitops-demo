@@ -8,7 +8,7 @@ spec:
     istio: admin-gateway # Must match the gateway pod labels
   servers:
     - hosts:
-        - "*.admin.techbrewhq.dev"
+        - "*.admin.dev.techbrewhq.com"
       port:
         name: http-admin
         number: 80
@@ -16,7 +16,7 @@ spec:
       tls:
         httpsRedirect: true
     - hosts:
-        - "*.admin.techbrewhq.dev"
+        - "*.admin.dev.techbrewhq.com"
       port:
         name: https-admin
         number: 443
@@ -26,7 +26,7 @@ spec:
         minProtocolVersion: TLSV1_3
         mode: SIMPLE
     - hosts:
-        - keycloak.admin.techbrewhq.dev
+        - keycloak.admin.dev.techbrewhq.com
       port:
         name: http-keycloak
         number: 80
@@ -34,7 +34,7 @@ spec:
       tls:
         httpsRedirect: true
     - hosts:
-        - keycloak.admin.techbrewhq.dev
+        - keycloak.admin.dev.techbrewhq.com
       port:
         name: https-keycloak
         number: 443

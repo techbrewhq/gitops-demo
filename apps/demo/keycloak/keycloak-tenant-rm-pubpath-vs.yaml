@@ -7,7 +7,7 @@ spec:
   gateways:
     - istio-tenant-gateway/tenant-gateway
   hosts:
-    - sso.techbrewhq.dev
+    - sso.dev.techbrewhq.com
   http:
     - headers:
         request:

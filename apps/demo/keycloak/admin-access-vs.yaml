@@ -7,7 +7,7 @@ spec:
   gateways:
     - istio-admin-gateway/admin-gateway
   hosts:
-    - keycloak.admin.techbrewhq.dev
+    - keycloak.admin.dev.techbrewhq.com
   http:
     - headers:
         request:

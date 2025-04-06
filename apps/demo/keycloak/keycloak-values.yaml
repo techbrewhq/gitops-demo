@@ -22,7 +22,7 @@ spec:
       - name: KC_HOSTNAME
         value: "sso.dev.techbrewhq"
       - name: KC_HOSTNAME_ADMIN
-        value: "keycloak.admin.dev.techbrewhq"
+        value: "admin.dev.techbrewhq"
       - name: KC_PROXY
         value: "edge"
       - name: KC_HTTP_ENABLED

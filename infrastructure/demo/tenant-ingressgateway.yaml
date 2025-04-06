@@ -67,17 +67,40 @@ spec:
       name: istio-tenant-gateway
       selector:
         istio: tenant-gateway # Ensure this matches the pod labels
-      servers:
-        - port:
-            number: 443
-            name: https
-            protocol: HTTPS
-        - port:
-            number: 80
-            name: http
-            protocol: HTTP
-          hosts:
-            - "*.dev.techbrewhq.com"
-          tls:
-            mode: SIMPLE
-            credentialName: gateway-tls # Must match the cert-manager secret name
+    servers:
+      - hosts:
+          - sso.uds.dev
+        port:
+          name: http-keycloak
+          number: 80
+          protocol: HTTP
+        tls:
+          httpsRedirect: true
+      - hosts:
+          - sso.uds.dev
+        port:
+          name: https-keycloak
+          number: 443
+          protocol: HTTPS
+        tls:
+          credentialName: gateway-tls
+          minProtocolVersion: TLSV1_3
+          mode: OPTIONAL_MUTUAL
+      - hosts:
+          - "*.uds.dev"
+        port:
+          name: http-tenant
+          number: 80
+          protocol: HTTP
+        tls:
+          httpsRedirect: true
+      - hosts:
+          - "*.uds.dev"
+        port:
+          name: https-tenant
+          number: 443
+          protocol: HTTPS
+        tls:
+          credentialName: gateway-tls
+          minProtocolVersion: TLSV1_3
+          mode: SIMPLE
