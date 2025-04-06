@@ -60,7 +60,7 @@ spec:
       enabled: true
       name: istio-admin-gateway
       selector:
-        istio: admin-gateway # Ensure this matches the pod labels
+        istio: istio-admin-gateway # Ensure this matches the pod labels
       servers:
         - port:
             number: 443

@@ -5,7 +5,7 @@ metadata:
   namespace: istio-tenant-gateway
 spec:
   selector:
-    istio: tenant-gateway # Must match the gateway pod labels
+    istio: istio-tenant-gateway # Must match the gateway pod labels
   servers:
     - port:
         number: 443

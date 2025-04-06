@@ -5,7 +5,7 @@ metadata:
   namespace: istio-admin-gateway
 spec:
   selector:
-    istio: admin-gateway # Must match the gateway pod labels
+    istio: istio-admin-gateway
   servers:
     - hosts:
         - "*.admin.dev.techbrewhq.com"
