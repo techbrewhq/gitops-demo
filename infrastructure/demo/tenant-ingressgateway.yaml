@@ -69,7 +69,7 @@ spec:
         istio: tenant-gateway # Ensure this matches the pod labels
     servers:
       - hosts:
-          - sso.uds.dev
+          - sso.dev.techbrewhq.com
         port:
           name: http-keycloak
           number: 80
@@ -77,7 +77,7 @@ spec:
         tls:
           httpsRedirect: true
       - hosts:
-          - sso.uds.dev
+          - sso.dev.techbrewhq.com
         port:
           name: https-keycloak
           number: 443
@@ -87,7 +87,7 @@ spec:
           minProtocolVersion: TLSV1_3
           mode: OPTIONAL_MUTUAL
       - hosts:
-          - "*.uds.dev"
+          - "*.dev.techbrewhq.com"
         port:
           name: http-tenant
           number: 80
@@ -95,7 +95,7 @@ spec:
         tls:
           httpsRedirect: true
       - hosts:
-          - "*.uds.dev"
+          - "*.dev.techbrewhq.com"
         port:
           name: https-tenant
           number: 443
