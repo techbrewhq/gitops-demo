@@ -5,7 +5,7 @@ metadata:
   namespace: keycloak
 spec:
   gateways:
-    - istio-tenant-gateway/tenant-gateway
+    - istio-tenant-gateway/istio-tenant-gateway
   hosts:
     - sso.dev.techbrewhq.com
   http:

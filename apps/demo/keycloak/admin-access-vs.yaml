@@ -5,7 +5,7 @@ metadata:
   namespace: keycloak
 spec:
   gateways:
-    - istio-admin-gateway/admin-gateway
+    - istio-admin-gateway/istio-admin-gateway
   hosts:
     - keycloak.admin.dev.techbrewhq.com
   http:
