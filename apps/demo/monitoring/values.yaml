@@ -4,6 +4,4 @@ metadata:
   name: kube-prometheus-stack
   namespace: monitoring
 spec:
-  values:
-    grafana:
-      adminPassword: "grafana123!" # Change this to a secure password
+  values: {}
