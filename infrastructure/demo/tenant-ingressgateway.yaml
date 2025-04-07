@@ -66,6 +66,7 @@ spec:
       enabled: true
       name: istio-tenant-gateway
       selector:
+        app: istio-tenant-gateway
         istio: istio-tenant-gateway # Ensure this matches the pod labels
     servers:
       - hosts:
