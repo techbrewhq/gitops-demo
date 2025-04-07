@@ -66,8 +66,7 @@ spec:
       enabled: true
       name: istio-admin-gateway
       selector:
-        istio: istio-admin-gateway # Ensure this matches the pod labels
-        app: istio-admin-gateway
+        istio: admin-gateway # Ensure this matches the pod labels
       servers:
         - hosts:
             - "*.admin.dev.techbrewhq.com"

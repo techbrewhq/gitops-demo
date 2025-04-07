@@ -5,8 +5,7 @@ metadata:
   namespace: istio-admin-gateway
 spec:
   selector:
-    istio: istio-admin-gateway
-    app: istio-admin-gateway
+    istio: admin-gateway
   servers:
     - hosts:
         - "*.admin.dev.techbrewhq.com"
