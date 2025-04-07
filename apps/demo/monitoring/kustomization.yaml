@@ -4,6 +4,6 @@ namespace: monitoring
 resources:
   - ../../base/monitoring
   - virtualservice.yaml
-  - grafana-oauth-secret.yaml
 patchesStrategicMerge:
-  - values.yaml 
+  - values.yaml
+
