@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  gateways:
+    - istio-tenant-gateway/istio-tenant-gateway
+  hosts:
+    - podinfo.dev.techbrewhq.com
+  http:
+    - route:
+        - destination:
+            host: podinfo.podinfo.svc.cluster.local # Ensure the full service name
+            port:
+              number: 9898
