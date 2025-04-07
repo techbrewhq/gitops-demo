@@ -57,15 +57,44 @@ spec:
       pullPolicy: IfNotPresent
 
     gateways:
-      enabled: false
+      enabled: true
       name: istio-admin-gateway
       selector:
         istio: istio-admin-gateway # Ensure this matches the pod labels
       servers:
-        - port:
-            number: 443
-            name: https
-            protocol: HTTPS
-          hosts:
+        - hosts:
             - "*.admin.dev.techbrewhq.com"
-          tls: kkkkkkkkkkk
+          port:
+            name: http-admin
+            number: 80
+            protocol: HTTP
+          tls:
+            httpsRedirect: true
+        - hosts:
+            - "*.admin.dev.techbrewhq.com"
+          port:
+            name: https-admin
+            number: 443
+            protocol: HTTPS
+          tls:
+            credentialName: gateway-tls
+            minProtocolVersion: TLSV1_3
+            mode: SIMPLE
+        - hosts:
+            - keycloak.admin.dev.techbrewhq.com
+          port:
+            name: http-keycloak
+            number: 80
+            protocol: HTTP
+          tls:
+            httpsRedirect: true
+        - hosts:
+            - keycloak.admin.dev.techbrewhq.com
+          port:
+            name: https-keycloak
+            number: 443
+            protocol: HTTPS
+          tls:
+            credentialName: gateway-tls
+            minProtocolVersion: TLSV1_3
+            mode: OPTIONAL_MUTUAL
