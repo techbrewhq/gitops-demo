@@ -51,54 +51,22 @@ spec:
           port: 443
           targetPort: 443
 
-    deployment:
-      autoscaling:
-        enabled: true
-        minReplicas: 2
-        maxReplicas: 5
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 2000m
+        memory: 1024Mi
 
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 5
+      targetCPUUtilizationPercentage: 80
+      targetMemoryUtilizationPercentage: {}
+      autoscaleBehavior: {}
     image:
       repository: docker.io/istio/proxyv2
       tag: "1.24.2"
       pullPolicy: IfNotPresent
-
-    gateways:
-      enabled: true
-      name: admin-gateway
-      servers:
-        - hosts:
-            - "*.admin.dev.techbrewhq.com"
-          port:
-            name: http-admin
-            number: 80
-            protocol: HTTP
-          tls:
-            httpsRedirect: true
-        - hosts:
-            - "*.admin.dev.techbrewhq.com"
-          port:
-            name: https-admin
-            number: 443
-            protocol: HTTPS
-          tls:
-            credentialName: gateway-tls
-            minProtocolVersion: TLSV1_3
-            mode: SIMPLE
-        - hosts:
-            - keycloak.admin.dev.techbrewhq.com
-          port:
-            name: http-keycloak
-            number: 80
-            protocol: HTTP
-          tls:
-            httpsRedirect: true
-        - hosts:
-            - keycloak.admin.dev.techbrewhq.com
-          port:
-            name: https-keycloak
-            number: 443
-            protocol: HTTPS
-          tls:
-            credentialName: gateway-tls
-            minProtocolVersion: TLSV1_3
-            mode: OPTIONAL_MUTUAL
