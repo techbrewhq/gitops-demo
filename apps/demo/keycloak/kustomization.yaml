@@ -6,6 +6,5 @@ resources:
   - admin-access-vs.yaml
   - keycloak-tenant-rm-pubpath-vs.yaml
   - public-access-vs.yaml
-  - realm-configmap.yaml
 patchesStrategicMerge:
   - keycloak-values.yaml
