@@ -1,0 +1,7 @@
+== Info: Host podinfo.dev.techbrewhq.com:80 was resolved.
+== Info: IPv6: (none)
+== Info: IPv4: 172.18.0.102
+== Info:   Trying 172.18.0.102:80...
+== Info: connect to 172.18.0.102 port 80 from 172.18.0.1 port 58840 failed: No route to host
+== Info: Failed to connect to podinfo.dev.techbrewhq.com port 80 after 3056 ms: Could not connect to server
+== Info: closing connection #0

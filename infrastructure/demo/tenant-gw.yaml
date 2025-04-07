@@ -7,12 +7,39 @@ spec:
   selector:
     istio: tenant-gateway # Must match the gateway pod labels
   servers:
-    - port:
-        number: 443
-        name: https
-        protocol: HTTPS
-      hosts:
-        - "*.dev.techbrewhq.com"
+    - hosts:
+        - sso.dev.techbrewhq.com
+      port:
+        name: http-keycloak
+        number: 80
+        protocol: HTTP
       tls:
-        mode: SIMPLE
+        httpsRedirect: true
+    - hosts:
+        - sso.dev.techbrewhq.com
+      port:
+        name: https-keycloak
+        number: 443
+        protocol: HTTPS
+      tls:
         credentialName: gateway-tls
+        minProtocolVersion: TLSV1_3
+        mode: OPTIONAL_MUTUAL
+    - hosts:
+        - "*.dev.techbrewhq.com"
+      port:
+        name: http-tenant
+        number: 80
+        protocol: HTTP
+      tls:
+        httpsRedirect: true
+    - hosts:
+        - "*.dev.techbrewhq.com"
+      port:
+        name: https-tenant
+        number: 443
+        protocol: HTTPS
+      tls:
+        credentialName: gateway-tls
+        minProtocolVersion: TLSV1_3
+        mode: SIMPLE
