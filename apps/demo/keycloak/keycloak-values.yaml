@@ -23,22 +23,13 @@ spec:
         value: "https://sso.dev.techbrewhq"
       - name: KC_HOSTNAME_ADMIN
         value: "https://keycloak.admin.dev.techbrewhq.com"
-      - name: KC_PROXY
-        value: "edge"
-      - name: KC_HTTP_ENABLED
-        value: "true"
-      - name: KEYCLOAK_EXTRA_ARGS
-        value: "--import-realm"
-      - name: PROXY_ADDRESS_FORWARDING
-        value: "true"
-      - name: KC_PROXY_HEADERS
-        value: "xforwarded"
     service:
       type: ClusterIP
       http:
         enabled: true
       ports:
         http: 8080
+        https: 8443
     replicaCount: 1
     resources:
       requests:
