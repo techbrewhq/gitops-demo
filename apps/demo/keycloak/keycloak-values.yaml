@@ -23,6 +23,8 @@ spec:
         value: "https://sso.dev.techbrewhq"
       - name: KC_HOSTNAME_ADMIN
         value: "https://keycloak.admin.dev.techbrewhq.com"
+      - name: KC_HTTP_ENABLED
+        value: "true"
     service:
       type: ClusterIP
       http:
