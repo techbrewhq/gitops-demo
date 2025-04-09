@@ -1,8 +1,9 @@
 tasks:
   - name: create-k3d-cluster
     actions:
+      - task: delete-cluster
       - cmd: |
-          k3d cluster create \
+          k3d cluster create techbrewhq \
           -p "80:80@server:*" \
           -p "443:443@server:*" \
           --api-port 6550 \
@@ -10,17 +11,27 @@ tasks:
           --k3s-arg "--disable=metrics-server@server:*" \
           --k3s-arg "--disable=servicelb@server:*"
 
-  - name: example
+  - name: flux-bootstrap
     actions:
-      - task: set-variable
-      - task: echo-variable
+      - cmd: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "Changes: $(git diff --cached --name-only | tr '\n' ' ')"
+          fi
+      - cmd: |
+          export GITHUB_TOKEN=$(cat .env | grep GITHUB_TOKEN | cut -d '=' -f2) 
+          flux bootstrap github --owner=techbrewhq \
+           --repository=gitops-demo \
+           --branch=main \
+           --path=clusters/demo \
+           --personal \
+           --token-auth
 
-  - name: set-variable
+  - name: all-up
     actions:
-      - cmd: echo "bar"
-        setVariables:
-          - name: FOO
+      - task: create-k3d-cluster
+      - task: flux-bootstrap
 
-  - name: echo-variable
+  - name: delete-cluster
     actions:
-      - cmd: echo ${FOO}
+      - cmd: k3d cluster delete techbrewhq
