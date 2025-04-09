@@ -41,3 +41,6 @@ spec:
       limits:
         cpu: "1000m"
         memory: "2Gi"
+    logging:
+      output: json
+      level: DEBUG
