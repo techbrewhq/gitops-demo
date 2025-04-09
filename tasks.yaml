@@ -1,0 +1,26 @@
+tasks:
+  - name: create-k3d-cluster
+    actions:
+      - cmd: |
+          k3d cluster create \
+          -p "80:80@server:*" \
+          -p "443:443@server:*" \
+          --api-port 6550 \
+          --k3s-arg "--disable=traefik@server:*" \
+          --k3s-arg "--disable=metrics-server@server:*" \
+          --k3s-arg "--disable=servicelb@server:*"
+
+  - name: example
+    actions:
+      - task: set-variable
+      - task: echo-variable
+
+  - name: set-variable
+    actions:
+      - cmd: echo "bar"
+        setVariables:
+          - name: FOO
+
+  - name: echo-variable
+    actions:
+      - cmd: echo ${FOO}
