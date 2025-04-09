@@ -17,6 +17,7 @@ tasks:
           if [ -n "$(git status --porcelain)" ]; then
             git add .
             git commit -m "Changes: $(git diff --cached --name-only | tr '\n' ' ')"
+            git push
           fi
       - cmd: |
           export GITHUB_TOKEN=$(cat .env | grep GITHUB_TOKEN | cut -d '=' -f2) 
