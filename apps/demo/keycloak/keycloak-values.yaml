@@ -18,6 +18,14 @@ spec:
     auth:
       adminUser: admin
       adminPassword: "admin123!"
+    extraEnvVars:
+      - name: KC_HOSTNAME
+        value: "https://sso.dev.techbrewhq"
+      - name: KC_HOSTNAME_ADMIN
+        value: "https://keycloak.admin.dev.techbrewhq.com"
+      - name: KC_HTTP_ENABLED
+        value: "true"
+    proxyAddressForwarding: true
     service:
       type: ClusterIP
       http:
